@@ -1,7 +1,4 @@
 import os
-import torch
-import clip
-from PIL import Image
 import numpy as np
 from src.argparse import parser
 from src.embedding import search, index
