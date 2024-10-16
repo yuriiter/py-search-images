@@ -44,10 +44,12 @@ def search_command():
         print()
         print("Search results:")
         for filename, similarity in limited_sorted_similarity_items:
-            print(f"{filename} {similarity:.4f}")
+            filepath = os.path.join(image_folder, filename)
+            print(f"{filepath} {similarity:.4f}")
     else:
         for filename, similarity in limited_sorted_similarity_items:
-            print(f"{filename}")
+            filepath = os.path.join(image_folder, filename)
+            print(f"{filepath}")
 
     return sorted_similarity_dict
 
