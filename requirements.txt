@@ -22,7 +22,7 @@ nvidia-nvtx-cu12==12.1.105
 packaging==24.1
 pillow==11.0.0
 regex==2024.9.11
-setuptools==75.1.0
+setuptools==75.2.0
 sympy==1.13.3
 torch==2.4.1
 torchvision==0.19.1
