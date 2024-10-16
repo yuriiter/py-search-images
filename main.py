@@ -4,6 +4,7 @@ from src.argparse import parser
 from src.embedding import search, index
 
 args = parser.parse_args()
+verbose = args.verbose
 
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.webp']
 
@@ -25,7 +26,10 @@ def index_command():
 
 def search_command():
     image_folder = args.folder
-    print(f'Searching relevant images in folder "{image_folder}"...')
+    num_of_results = args.num
+
+    if verbose:
+        print(f'Searching relevant images in folder "{image_folder}"...')
 
     vectors_path = os.path.join(image_folder, "vectors.npz")
     if not os.path.exists(vectors_path):
@@ -35,11 +39,16 @@ def search_command():
     data = np.load(vectors_path)
 
     sorted_similarity_dict = search(data, args.query)
+    limited_sorted_similarity_items = list(sorted_similarity_dict.items())[:num_of_results]
 
-    print()
-    print("Search results:")
-    for filename, similarity in sorted_similarity_dict.items():
-        print(f"{filename} {similarity:.4f}")
+    if verbose:
+        print()
+        print("Search results:")
+        for filename, similarity in limited_sorted_similarity_items:
+            print(f"{filename} {similarity:.4f}")
+    else:
+        for filename, similarity in limited_sorted_similarity_items:
+            print(f"{filename}")
 
     return sorted_similarity_dict
 
