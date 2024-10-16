@@ -4,8 +4,6 @@ from src.argparse import parser
 from src.embedding import search, index
 
 args = parser.parse_args()
-verbose = args.verbose
-
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.webp']
 
 def index_command():
@@ -25,6 +23,7 @@ def index_command():
 
 
 def search_command():
+    verbose = args.verbose
     image_folder = args.folder
     num_of_results = args.num
 
